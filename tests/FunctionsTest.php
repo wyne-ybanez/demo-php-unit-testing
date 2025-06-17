@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-// Test functions in `lib/`
 require dirname(__DIR__) . '/lib/functions.php';
 
 final class FunctionsTest extends TestCase
 {
     public function testAddTwoPositiveIntegers(): void
     {
-        $this->assertSame(6, addIntegers(2, 3));
+        $this->assertSame(6, addIntegers(2, 3)); // this should fail
     }
 
     public function testAddTwoNegativeIntegers(): void

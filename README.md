@@ -22,7 +22,7 @@ This is my preferred installation.
 
 &nbsp;
 
-## Get PHP-Unit running
+## Setup PHPUnit
 
 Make PHPUnit executable:
 
@@ -48,10 +48,21 @@ or if you're like me, you made an alias of the above:
 
 ## How to use
 
-In the project folder - this is assuming you have made an alias for phpunit.
+In the project folder - this is assuming you have made an alias for phpunit. Assuming you have defined your test.
 
-Assuming you have defined your test. To run:
-`phpunit <folder>/<file.php>`
+Run: `phpunit <folder>/<file.php>`
+
+---
+
+If you want to see the results of your test highlighted with colours.
+
+Run: `phpunit <folder>/<file.php> --colors`
+
+---
+
+If you want to see the results of your test highlighted with colours and stop the test on the first failure it encounters.
+
+Run: `phpunit <folder>/<file.php> --colors --stop-on-failure`
 
 &nbsp;
 
