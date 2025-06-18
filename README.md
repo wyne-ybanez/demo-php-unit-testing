@@ -73,11 +73,11 @@ The folder is using a bootstrap script to load in the test methods.
 
 Here is an example to make function tests run:
 
-`phpunit tests/FunctionsTest.php --bootstrap tests/bootstrap.php`
+`phpunit tests/FunctionsTest.php --bootstrap vendor/autoload.php --colors --testdox`
 
 Run Person class test:
 
-`phpunit tests/PersonTest.php --bootstrap tests/bootstrap.php`
+`phpunit tests/PersonTest.php --bootstrap vendor/autoload.php --colors --testdox`
 
 &nbsp;
 

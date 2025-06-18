@@ -1,8 +1,14 @@
 {
+    "_comments": [
+        "run `composer dump-autoload` everytime you change the autoload config"
+    ],
     "autoload": {
         "psr-4": {
-            "": "src"
-        }
+            "": "src/"
+        },
+        "files": [
+            "lib/functions.php"
+        ]
     },
     "require-dev": {
         "phpunit/phpunit": "^12.2"
