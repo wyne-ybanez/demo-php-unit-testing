@@ -67,20 +67,6 @@ Testdox for test report, useful as a base for documentation (helps if your test 
 
 &nbsp;
 
-## Bootstrap
-
-The folder is using a bootstrap script to load in the test methods.
-
-Here is an example to make function tests run:
-
-`phpunit tests/FunctionsTest.php --bootstrap vendor/autoload.php --colors --testdox`
-
-Run Person class test:
-
-`phpunit tests/PersonTest.php --bootstrap vendor/autoload.php --colors --testdox`
-
-&nbsp;
-
 ## Tips
 
 - Just make one assertion per test. This makes it easier to maintain.
