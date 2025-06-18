@@ -52,17 +52,32 @@ In the project folder - this is assuming you have made an alias for phpunit. Ass
 
 Run: `phpunit <folder>/<file.php>`
 
----
+&nbsp;
 
-If you want to see the results of your test highlighted with colours.
+## Useful Commands
 
-Run: `phpunit <folder>/<file.php> --colors`
+Highlights test with colours:
+`phpunit <folder>/<file.php> --colors`
 
----
+Highlights test with colours and stop the test on the first failure it encounters, also prints the name of the failed test:
+`phpunit <folder>/<file.php> --colors --stop-on-failure`
 
-If you want to see the results of your test highlighted with colours and stop the test on the first failure it encounters.
+Testdox for test report, useful as a base for documentation (helps if your test names should be verbose):
+`phpunit <folder>/<file.php> --colors --testdox`
 
-Run: `phpunit <folder>/<file.php> --colors --stop-on-failure`
+&nbsp;
+
+## Bootstrap
+
+The folder is using a bootstrap script to load in the test methods.
+
+Here is an example to make function tests run:
+
+`phpunit tests/FunctionsTest.php --bootstrap tests/bootstrap.php`
+
+Run Person class test:
+
+`phpunit tests/PersonTest.php --bootstrap tests/bootstrap.php`
 
 &nbsp;
 

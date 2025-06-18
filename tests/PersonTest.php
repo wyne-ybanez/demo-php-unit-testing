@@ -3,8 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-
-require dirname(__DIR__) . '/src/Person.php';
+use App\Person;
 
 final class PersonTest extends TestCase
 {
