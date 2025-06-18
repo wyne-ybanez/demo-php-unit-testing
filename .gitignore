@@ -1,2 +1,5 @@
 .DS_Store
 .phpunit.cache
+
+# we are using our own `phpunit.xml.dist`
+phpunit.xml

@@ -49,21 +49,22 @@ or if you're like me, you made an alias of the above:
 ## How to use
 
 In the project folder - this is assuming you have made an alias for phpunit. Assuming you have defined your test.
+This is already applying the command configurations within `phpunit.xml`.
 
-Run: `phpunit <folder>/<file.php>`
+Run: `phpunit tests/<file.php>`
 
 &nbsp;
 
-## Useful Commands
+## Without `phpunit.xml.dist` config - Useful Commands
 
 Highlights test with colours:
-`phpunit <folder>/<file.php> --colors`
+`phpunit tests/<file.php> --bootstrap tests/bootstrap.php --colors`
 
 Highlights test with colours and stop the test on the first failure it encounters, also prints the name of the failed test:
-`phpunit <folder>/<file.php> --colors --stop-on-failure`
+`phpunit tests/<file.php> --bootstrap tests/bootstrap.php --colors --stop-on-failure`
 
 Testdox for test report, useful as a base for documentation (helps if your test names should be verbose):
-`phpunit <folder>/<file.php> --colors --testdox`
+`phpunit tests/<file.php> --bootstrap tests/bootstrap.php --colors --testdox`
 
 &nbsp;
 
