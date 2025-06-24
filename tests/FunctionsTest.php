@@ -8,7 +8,7 @@ final class FunctionsTest extends TestCase
 {
     public function testAddTwoPositiveIntegers(): void
     {
-        $this->assertSame(6, addIntegers(2, 3)); // this should fail
+        $this->assertSame(5, addIntegers(2, 3));
     }
 
     public function testAddTwoNegativeIntegers(): void
