@@ -49,13 +49,26 @@ or if you're like me, you made an alias of the above:
 ## How to use
 
 In the project folder - this is assuming you have made an alias for phpunit. Assuming you have defined your test.
-This is already applying the command configurations within `phpunit.xml`.
 
-Run: `phpunit tests/<file.php>`
+This is already applying the configurations within `phpunit.xml`.
+
+To use all tests under `tests/` - run: `phpunit`
 
 &nbsp;
 
-## Without `phpunit.xml.dist` config - Useful Commands
+### Run Folders
+
+Run all the tests in the `tests/` folder: `phpunit tests`
+
+---
+
+### Wildcards
+
+Wildcards are handy for running multiple tests at a time. To activate all test files - run: `phpunit tests/*Test.php*`
+
+---
+
+### Without `phpunit.xml.dist` config - Useful Commands
 
 Highlights test with colours:
 `phpunit tests/<file.php> --bootstrap tests/bootstrap.php --colors`
@@ -65,6 +78,39 @@ Highlights test with colours and stop the test on the first failure it encounter
 
 Testdox for test report, useful as a base for documentation (helps if your test names should be verbose):
 `phpunit tests/<file.php> --bootstrap tests/bootstrap.php --colors --testdox`
+
+&nbsp;
+
+## Test Suites
+
+You can list the total amount of suites you've created through. This is all configured in the xml file.
+
+Run: `phpunit --list-suites`
+
+### Running a test suite
+
+You can choose what test suite to run, for example run the default test suite: `phpunit --testsuite default`
+
+### Composing a test suite using using XML configuration
+
+Here is an example of an xml test suite.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="tests/bootstrap.php">
+    <testsuites>
+        <testsuite name="unit">
+            <directory>tests/unit</directory>
+        </testsuite>
+
+        <testsuite name="integration">
+            <directory>tests/integration</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
+```
 
 &nbsp;
 
