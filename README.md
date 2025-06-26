@@ -95,6 +95,12 @@ Highlights test with colours and stop the test on the first failure it encounter
 Testdox for test report, useful as a base for documentation (helps if your test names should be verbose):
 `phpunit tests/<file.php> --bootstrap tests/bootstrap.php --colors --testdox`
 
+### Incomplete tests
+
+Run: `phpunit --display-incomplete`
+
+If you have a test you thats not asserting anything: `phpunit --dont-report-useless-tests`.
+
 &nbsp;
 
 ## Test Suites

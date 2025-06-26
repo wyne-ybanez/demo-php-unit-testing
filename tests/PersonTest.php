@@ -19,5 +19,8 @@ final class PersonTest extends TestCase
     }
 
     #[Test]
-    public function full_name_is_first_name_when_no_surname(): void {}
+    public function full_name_is_first_name_when_no_surname(): void
+    {
+        $this->markTestIncomplete('This test is not implemented yet.');
+    }
 }
