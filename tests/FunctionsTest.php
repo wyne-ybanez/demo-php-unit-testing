@@ -3,27 +3,25 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class FunctionsTest extends TestCase
 {
-    public function testAddTwoPositiveIntegers(): void
+    // This acts as a data provider for out methods
+    public static function additionProvider(): array
     {
-        $this->assertSame(5, addIntegers(2, 3));
+        return [
+            'two positive integers' => [2, 3, 5],
+            'two negative integers' => [-2, -3, -5],
+            'positive and negative integers' => [3, -2, 1],
+            'adding zero' => [3, 0, 3]
+        ];
     }
 
-    public function testAddTwoNegativeIntegers(): void
+    #[DataProvider('additionProvider')] // Sets up the data provider for this method
+    public function testAddIntegers(int $a, int $b, int $expected): void
     {
-        $this->assertSame(-5, addIntegers(-2, -3));
-    }
-
-    public function testAddPositiveAndNegativeIntegers(): void
-    {
-        $this->assertSame(1, addIntegers(3, -2));
-    }
-
-    public function testAddZeroToInteger(): void
-    {
-        $this->assertSame(3, addIntegers(3, 0));
+        $this->assertSame($expected, addIntegers($a, $b));
     }
 
     public function testAddingIsCommutative(): void

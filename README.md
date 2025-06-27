@@ -1,8 +1,10 @@
 # PHPUnit - Unit Testing
 
-To unit test code.
+To practice unit testing PHP code.
 
 Must exist in the project folder of where the test is planned to occur.
+
+The goal of unit testing is to isolate each part of an application and show that each individual unit works as expected.
 
 &nbsp;
 
@@ -151,6 +153,12 @@ use PHPUnit\Framework\Attributes\Test;
 #[Test]
 public function full_name_is_first_name_when_no_surname(): void {}
 ```
+
+&nbsp;
+
+## Data Providers
+
+You can add a data provider static function to add data for testing rather than manually creating a new function for each test. Check `FunctionsTest.php`.
 
 &nbsp;
 

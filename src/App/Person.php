@@ -23,7 +23,7 @@ class Person
 
     public function getFullName(): string
     {
-        return $this->first_name . ' ' . $this->surname;
+        return trim($this->first_name . ' ' . ($this->surname ?? null));
     }
 
     // Setters
