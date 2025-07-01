@@ -7,31 +7,41 @@ use PHPUnit\Framework\Attributes\Depends;
 
 final class QueueTest extends TestCase
 {
-    public function testNewQueueIsEmpty(): Queue
+    private Queue $queue;
+
+    protected function setUp(): void
     {
-        $queue = new Queue; // Queue is already autoloaded
-
-        $this->assertSame(0, $queue->getSize());
-
-        return $queue;
+        $this->queue = new Queue;
     }
 
-    #[Depends('testNewQueueIsEmpty')]
-    public function testPushAddsItem(Queue $queue): Queue
+    /*
+    This runs after each test method - usually for cleaning up.
+    This isn't really practical.
+    You'd only do this if a variable uses up too much memory
+    or if you were allocating external resources such as files.
+    */
+    protected function tearDown(): void
     {
-        $queue->push('Item');
-
-        $this->assertSame(1, $queue->getSize());
-
-        return $queue;
+        // unset($this->queue);
     }
 
-    #[Depends('testPushAddsItem')]
-    public function testPopRemovesAndReturnsItem(Queue $queue): void
+    public function testNewQueueIsEmpty(): void
+    {
+        $this->assertSame(0, $this->queue->getSize());
+    }
+
+    public function testPushAddsItem(): void
+    {
+        $this->queue->push('an item');
+
+        $this->assertSame(1, $this->queue->getSize());
+    }
+
+    public function testPopRemovesAndReturnsItem(): void
     {
         // pop removes from array and returns the removed value
-        $this->assertSame('Item', $queue->pop());
+        $this->assertSame('an item', $this->queue->pop());
 
-        $this->assertSame(0, $queue->getSize());
+        $this->assertSame(0, $this->queue->getSize());
     }
 }

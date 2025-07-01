@@ -164,19 +164,38 @@ You can add a data provider static function to add data for testing rather than 
 
 ## Adding Dependencies / Dependency Injection into Tests
 
-Check `QueueTest.php`
+There are 2 ways:
 
-Will need to use:
+You can use:
 
 ```php
 use PHPUnit\Framework\Attributes\Depends;
 
-// get the dependency value from testNewQueueIsEmpty method
+public function testNewQueueIsEmpty(): Queue
+{
+    $queue = new Queue;
+    $this->assertSame(0, $queue->getSize());
 
-#[Depends('testNewQueueIsEmpty')]
+    return $queue;
+}
+
+
+#[Depends('testNewQueueIsEmpty')] // get the dependency value from testNewQueueIsEmpty method
 public function testPushAddsItem(Queue $queue): void
 {
    // ... you can use $queue here now
+}
+```
+
+or use a setup function - check `QueueTest.php`:
+
+```php
+private Queue $queue;
+
+// assigns a state
+protected function setUp(): void
+{
+    $this->queue = new Queue;
 }
 ```
 
