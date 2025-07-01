@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-final class ExampleTest extends TestCase
+final class ExampleClassTest extends TestCase
 {
     /*
         Assertion Methods
