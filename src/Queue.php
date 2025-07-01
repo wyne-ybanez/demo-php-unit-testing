@@ -20,6 +20,15 @@ class Queue
         return array_pop($this->items);
     }
 
+    public function shift(): mixed
+    {
+        if (empty($this->items)) {
+            throw new \UnderflowException('Queue is empty');
+        }
+
+        return array_shift($this->items);
+    }
+
     public function getSize(): int
     {
         return count($this->items);

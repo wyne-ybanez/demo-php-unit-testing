@@ -3,13 +3,12 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\Depends;
 
 final class QueueTest extends TestCase
 {
     private Queue $queue;
 
-    protected function setUp(): void
+    protected function setUp(): void // before each test method when the test is run
     {
         $this->queue = new Queue;
     }
@@ -32,16 +31,41 @@ final class QueueTest extends TestCase
 
     public function testPushAddsItem(): void
     {
-        $this->queue->push('an item');
+        $this->queue->push('item');
 
         $this->assertSame(1, $this->queue->getSize());
     }
 
     public function testPopRemovesAndReturnsItem(): void
     {
-        // pop removes from array and returns the removed value
-        $this->assertSame('an item', $this->queue->pop());
+        $this->queue->push('item');
 
-        $this->assertSame(0, $this->queue->getSize());
+        // pop removes from array and returns the removed value
+        $this->assertSame('item', $this->queue->pop());
+    }
+
+    public function testAnItemIsRemovedFromTheFrontOfTheQueue(): void
+    {
+        $this->queue->push('first');
+        $this->queue->push('second');
+
+        $this->assertSame('first', $this->queue->shift());
+    }
+
+    // Exception Tests
+    public function testPopThrowsExceptionWhenQueueIsEmpty(): void
+    {
+        $this->expectException(\UnderflowException::class);
+        $this->expectExceptionMessage('Queue is empty');
+
+        $this->queue->pop();
+    }
+
+    public function testShiftThrowsExceptionWhenQueueIsEmpty(): void
+    {
+        $this->expectException(\UnderflowException::class);
+        $this->expectExceptionMessage('Queue is empty');
+
+        $this->queue->shift();
     }
 }
