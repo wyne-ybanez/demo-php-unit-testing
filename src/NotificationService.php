@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 class NotificationService
 {
+    // Expects a Mailer object dependency
+    public function __construct(private Mailer $mailer){}
+
     public function sendNotification(string $recipient_email, string $message): bool
     {
-        $mailer = new Mailer;
-
         $subject = 'New Notification';
 
-        return $mailer->sendEmail($recipient_email, $subject, $message);
+        return $this->mailer->sendEmail($recipient_email, $subject, $message);
     }
 }

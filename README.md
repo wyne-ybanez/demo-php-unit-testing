@@ -58,6 +58,12 @@ Your version might be earlier or later, as long as the functionality remains and
 
 &nbsp;
 
+## Autoloading
+
+Classes in the `src/` folder are autoloaded (psr-4).
+
+&nbsp;
+
 ## How to use
 
 In the project folder - this is assuming you have made an alias for phpunit. Assuming you have defined your test.
