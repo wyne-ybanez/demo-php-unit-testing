@@ -6,7 +6,13 @@ use PHPUnit\Framework\TestCase;
 
 final class NotificationServiceTest extends TestCase
 {
-    // TEST Dependency
+    /**
+     * testNotificationIsSent
+     *
+     * test dependency injection works
+     *
+     * @return void
+     */
     public function testNotificationIsSent(): void
     {
         // stub = object clone
@@ -14,10 +20,9 @@ final class NotificationServiceTest extends TestCase
         // $mailer = new Mailer;
         $mailer = $this->createStub(Mailer::class);
 
-        // manipulate mimicked object method and set what it will return
+        // allows us to test the notification without sending emails
         $mailer->method('sendEmail')->willReturn(true);
 
-        // Dependency injection
         $service = new NotificationService($mailer);
 
         // IF we use a stub here and don't manipulate the method on the stub, this will fail
@@ -25,7 +30,11 @@ final class NotificationServiceTest extends TestCase
         $this->assertTrue($service->sendNotification('dave@example.com', 'Hello'));
     }
 
-    // TEST Exception
+    /**
+     * testSendThrowsException
+     *
+     * @return void
+     */
     public function testSendThrowsException(): void
     {
         $mailer = $this->createStub(Mailer::class);
@@ -41,5 +50,27 @@ final class NotificationServiceTest extends TestCase
         $this->expectExceptionMessage('Could not send notification');
 
         $service->sendNotification('dave@example.com', 'Hello');
+    }
+
+    /**
+     * testMailerIsCalledCorrectly
+     *
+     * check if it is definitely called
+     * make sure it is only called once
+     *
+     * @return void
+     */
+    public function testMailerIsCalledCorrectly(): void
+    {
+        $mailer = $this->createMock(Mailer::class);
+
+        // expects to be called once
+        $mailer->expects($this->once())
+            ->method('sendEmail')
+            ->willReturn(true);
+
+        $service = new NotificationService($mailer);
+
+        $this->assertTrue($service->sendNotification('dave@example.com', 'Hi'));
     }
 }
