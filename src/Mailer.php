@@ -10,6 +10,10 @@ class Mailer
 
         sleep(3);  // simulate process being slow
 
+        // you won't need error exceptions if you're using object stubs
+        // this is just an example of how this class might throw the exception
+        // throw new RuntimeException('SMTP server not reachable');
+
         return true;
     }
 }
