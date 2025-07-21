@@ -15,18 +15,17 @@ final class NotificationServiceTest extends TestCase
      */
     public function testNotificationIsSent(): void
     {
-        // stub = object clone
+        // stub = object clone - test for state
         // create stub of mailer
-        // $mailer = new Mailer;
         $mailer = $this->createStub(Mailer::class);
 
         // allows us to test the notification without sending emails
+        // 1 assertion
         $mailer->method('sendEmail')->willReturn(true);
 
         $service = new NotificationService($mailer);
 
         // IF we use a stub here and don't manipulate the method on the stub, this will fail
-        // because the service is dependent on the Mailer object, but the stub overrides this
         $this->assertTrue($service->sendNotification('dave@example.com', 'Hello'));
     }
 
@@ -39,7 +38,7 @@ final class NotificationServiceTest extends TestCase
     {
         $mailer = $this->createStub(Mailer::class);
 
-        // expecting this exception to be caught and replaced with out own test exception instead - business logic over technical
+        // expecting this exception to be caught and replaced with our own test exception instead - business logic over technical
         $mailer->method('sendEmail')
             ->willThrowException(new RuntimeException('SMTP server down'));
 
@@ -55,19 +54,21 @@ final class NotificationServiceTest extends TestCase
     /**
      * testMailerIsCalledCorrectly
      *
+     * create mock for Mailer class
      * check if it is definitely called
      * make sure it is only called once
      *
      * @return void
      */
-    public function testMailerIsCalledCorrectly(): void
+    public function testMailerIsCalledCorrectlyOnce(): void
     {
         $mailer = $this->createMock(Mailer::class);
 
-        // expects to be called once
+        // expect 5 assertions
         $mailer->expects($this->once())
-            ->method('sendEmail')
-            ->willReturn(true);
+               ->method('sendEmail')
+               ->with('dave@example.com', 'New Notification', 'Hi')
+               ->willReturn(true);
 
         $service = new NotificationService($mailer);
 
