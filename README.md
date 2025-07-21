@@ -52,7 +52,8 @@ or if you're like me, you made an alias of the above:
 
 ## Dependancies
 
-PHPUnit version `12.2`
+PHPUnit `12.2`
+PHP `8.3`
 
 Your version might be earlier or later, as long as the functionality remains and is familiar enough for you to configure/fix, then you should be okay.
 
