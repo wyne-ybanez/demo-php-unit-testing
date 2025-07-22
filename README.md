@@ -1,10 +1,10 @@
-# PHPUnit - Unit Testing
+# Demo PHPUnit - Unit Testing
 
-To practice unit testing PHP code.
+- To practice unit testing PHP code.
 
-Must exist in the project folder of where the test is planned to occur.
+- The goal of unit testing is to isolate each part of an application and show that each individual unit works as expected.
 
-The goal of unit testing is to isolate each part of an application and show that each individual unit works as expected.
+- Tests should confirm the behaviour of code, not how it's implemented. Tests should affirm the outcome of using a class and its methods.
 
 &nbsp;
 
