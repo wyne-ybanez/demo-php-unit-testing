@@ -4,7 +4,7 @@
 
 - The goal of unit testing is to isolate each part of an application and show that each individual unit works as expected.
 
-- Tests should confirm the behaviour of code, not how it's implemented. Tests should affirm the outcome of using a class and its methods.
+- For TDD: Tests should confirm the behaviour of code, not how it's implemented. Tests should affirm the outcome of using a class and its methods.
 
 &nbsp;
 

@@ -6,8 +6,15 @@ namespace App;
 
 class TodoManager
 {
+    private array $tasks = [];
+
     public function getTasks(): array
     {
-        return [];
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): void
+    {
+        $this->tasks[] = $task;
     }
 }
