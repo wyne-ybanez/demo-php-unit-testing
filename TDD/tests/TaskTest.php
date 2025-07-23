@@ -14,4 +14,18 @@ final class TaskTest extends TestCase
 
         $this->assertSame('Buy Milk', $task->getTitle());
     }
+
+    public function testCannotCreateATaskWithAnEmptyTitle(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $task = new Task('');
+    }
+
+    public function testCannotCreateATaskWithATitleThatsJustSpaces(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $task = new Task('     ');
+    }
 }
