@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 class PaymentProcessor
 {
-    public function __construct(private string $api_key)
-    {
-    }
+    public function __construct(private string $api_key) {}
 
     public function charge(float $amount): string
     {

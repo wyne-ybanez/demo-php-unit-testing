@@ -210,11 +210,29 @@ protected function setUp(): void
 
 ## Code Coverage
 
-For coverage I'm using [XDebug](https://xdebug.org/);
+For coverage I'm using [XDebug](https://xdebug.org/). You will need to install XDebug in your project directory.
 
 Mac OS or Linux: `XDEBUG_MODE=coverage phpunit --coverage-text`
 
 Windows Powershell: `$env:XDEBUG_MODE = 'coverage'`
+
+### What is coverage?
+
+This basically checks how much of your code meethods are in use or are available for testing usage.
+
+75% to 90% is considered good coverage. 80% is a common acceptable goal (but honestly it's completely up to you/your organization).
+
+---
+
+Coverage report in txt format: `XDEBUG_MODE=coverage phpunit --coverage-text=report.txt`
+
+---
+
+Coverage report in HTML format - `report/` directory will be created if it doesn't already exist:
+
+`XDEBUG_MODE=coverage phpunit --coverage-html report`
+
+You can then check the report at `/report/index.html`
 
 &nbsp;
 
