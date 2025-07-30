@@ -208,6 +208,16 @@ protected function setUp(): void
 
 &nbsp;
 
+## Code Coverage
+
+For coverage I'm using [XDebug](https://xdebug.org/);
+
+Mac OS or Linux: `XDEBUG_MODE=coverage phpunit --coverage-text`
+
+Windows Powershell: `$env:XDEBUG_MODE = 'coverage'`
+
+&nbsp;
+
 ## Tips
 
 - Just make one assertion per test. This makes it easier to maintain.
