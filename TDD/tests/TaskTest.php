@@ -28,4 +28,12 @@ final class TaskTest extends TestCase
 
         $task = new Task('     ');
     }
+
+    public function testEachTaskIsAssignedAUniqueId(): void
+    {
+        $task1 = new Task('Clean windows');
+        $task2 = new Task('Make cake');
+
+        $this->assertNotSame($task1->getId(), $task2->getId());
+    }
 }
