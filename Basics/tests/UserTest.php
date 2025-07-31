@@ -20,12 +20,13 @@ final class UserTest extends TestCase
         $this->assertFalse($user->authenticatePassword('asdasdasda'));
     }
 
+    // A way to test for protected methods is to create a child class and change the method visibility in that child class.
     public function testPasswordHashIsMinimumLength(): void
     {
-        $user = new User('Ben', 'ben_secret_password');
+        $user = new UserChild('Ben', 'ben_secret_password');
 
         $hash = $user->hashPassword('ben_secret_password');
 
-        $this->greaterThanOrEqual(60, strlen($hash));
+        $this->assertGreaterThanOrEqual(60, strlen($hash));
     }
 }
