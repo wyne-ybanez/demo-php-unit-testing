@@ -20,7 +20,7 @@ final class UserTest extends TestCase
         $this->assertFalse($user->authenticatePassword('asdasdasda'));
     }
 
-    // A way to test for protected methods is to create a child class and change the method visibility in that child class.
+    // Test for protected methods is to create a child class and change the method visibility in that child class.
     public function testPasswordHashIsMinimumLength(): void
     {
         $user = new UserChild('Ben', 'ben_secret_password');
@@ -30,16 +30,29 @@ final class UserTest extends TestCase
         $this->assertGreaterThanOrEqual(60, strlen($hash));
     }
 
-    // A way to test protected methods using reflection
+    // Test protected methods using reflection
     public function testPasswordHashIsMinimumLengthUsingReflection(): void
     {
+        $user = new User('Loui', 'loui_secret_password');
         $reflector = new ReflectionClass(User::class);
+
         $method = $reflector->getMethod('hashPassword');
 
-        $user = new User('Dave', 'dave_secret_password');
-
-        $hash = $method->invoke($user, 'dave_secret_password');
+        $hash = $method->invoke($user, 'loui_secret_password');
 
         $this->assertGreaterThanOrEqual(60, strlen($hash));
+    }
+
+    // Test for protected properties
+    public function testAlgorithmHasADefaultValue(): void
+    {
+        $user = new User('Bart', 'bart_secret_password');
+        $reflector = new ReflectionClass(User::class);
+
+        $property = $reflector->getProperty('algorithm');
+
+        $value = $property->getValue($user);
+
+        $this->assertNotNull($value);
     }
 }

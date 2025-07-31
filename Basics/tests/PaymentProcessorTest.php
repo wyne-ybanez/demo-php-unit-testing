@@ -29,7 +29,7 @@ final class PaymentProcessorTest extends TestCase
         $processor->logTransaction(100);
     }
 
-    public function testAPIKeyIsUsedToChargeTheAmount(): void
+    public function testApiKeyIsUsedToChargeTheAmount(): void
     {
         $processor = new PaymentProcessor('an-API-key');
 
