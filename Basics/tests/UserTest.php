@@ -29,4 +29,17 @@ final class UserTest extends TestCase
 
         $this->assertGreaterThanOrEqual(60, strlen($hash));
     }
+
+    // A way to test protected methods using reflection
+    public function testPasswordHashIsMinimumLengthUsingReflection(): void
+    {
+        $reflector = new ReflectionClass(User::class);
+        $method = $reflector->getMethod('hashPassword');
+
+        $user = new User('Dave', 'dave_secret_password');
+
+        $hash = $method->invoke($user, 'dave_secret_password');
+
+        $this->assertGreaterThanOrEqual(60, strlen($hash));
+    }
 }
