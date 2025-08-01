@@ -10,19 +10,32 @@ final class UserRegistrationServiceTest extends TestCase
     {
         $email = 'bart@example.com';
 
-        $validator = $this->createMock(Validator::class);
+        // Use a callback function because UserRegistrationService expects a Closure.
+        $stub = function (string $email) {
+            echo "$email is valid.";
+            return true;
+        };
 
-        $validator
-            ->expects($this->once())
-            ->method('isValidEmailInstance')
-            ->with($email)
-            ->willReturn(true)
-        ;
+        $service = new UserRegistrationService($stub);
 
-        $service = new UserRegistrationService($validator);
+        $this->expectOutputString("$email is valid.");
 
         $result = $service->register($email);
 
         $this->assertSame("User with email $email registered successfully.", $result);
+    }
+
+    public function testRegisterWithInvalidEmail(): void
+    {
+        // Use a callback function because UserRegistrationService expects a Closure.
+        $stub = function (string $email) {
+            return false;
+        };
+
+        $service = new UserRegistrationService($stub);
+
+        $this->expectException(InvalidArgumentException::class);
+
+        $service->register('invalid email');
     }
 }

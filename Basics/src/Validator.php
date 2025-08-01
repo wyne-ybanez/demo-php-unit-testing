@@ -7,6 +7,8 @@ class Validator
     // Static methods can't be directly mocked in PHPUnit
     public static function isValidEmail(string $email): bool
     {
+        echo "called Validator::isValidEmail";
+
         return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
