@@ -66,9 +66,9 @@ final class NotificationServiceTest extends TestCase
 
         // expect 5 assertions
         $mailer->expects($this->once())
-               ->method('sendEmail')
-               ->with('dave@example.com', 'New Notification', 'Hi')
-               ->willReturn(true);
+            ->method('sendEmail')
+            ->with('dave@example.com', 'New Notification', 'Hi')
+            ->willReturn(true);
 
         $service = new NotificationService($mailer);
 

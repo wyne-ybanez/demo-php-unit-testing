@@ -169,7 +169,7 @@ You can add a data provider static function to add data for testing rather than 
 
 &nbsp;
 
-## Adding Dependencies / Dependency Injection into Tests
+## Adding Dependencies
 
 There are 2 ways:
 
