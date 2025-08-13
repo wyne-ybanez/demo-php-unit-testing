@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use PHPUnit\Framework\TestCase;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
-final class NotificationServiceTest extends TestCase
+final class NotificationServiceTest extends MockeryTestCase
 {
     /**
      * testNotificationIsSent
@@ -20,7 +20,6 @@ final class NotificationServiceTest extends TestCase
         $mailer = $this->createStub(Mailer::class);
 
         // allows us to test the notification without sending emails
-        // 1 assertion
         $mailer->method('sendEmail')->willReturn(true);
 
         $service = new NotificationService($mailer);
@@ -44,7 +43,6 @@ final class NotificationServiceTest extends TestCase
 
         $service = new NotificationService($mailer);
 
-        // expect 2 assertions
         $this->expectException(NotificationException::class);
         $this->expectExceptionMessage('Could not send notification');
 
@@ -64,11 +62,27 @@ final class NotificationServiceTest extends TestCase
     {
         $mailer = $this->createMock(Mailer::class);
 
-        // expect 5 assertions
         $mailer->expects($this->once())
             ->method('sendEmail')
             ->with('dave@example.com', 'New Notification', 'Hi')
             ->willReturn(true);
+
+        $service = new NotificationService($mailer);
+
+        $this->assertTrue($service->sendNotification('dave@example.com', 'Hi'));
+    }
+
+    /*
+       Mockery test for the test above
+    */
+    public function testMailerIsCalledCorrectlyOnceWithMockery(): void
+    {
+        $mailer = Mockery::mock(Mailer::class);
+
+        $mailer->shouldReceive('sendEmail')
+            ->once()
+            ->with('dave@example.com', 'New Notification', 'Hi')
+            ->andReturn(true);
 
         $service = new NotificationService($mailer);
 
