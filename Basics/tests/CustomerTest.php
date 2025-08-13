@@ -5,10 +5,12 @@ declare(strict_types=1);
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 use PHPUnit\Framework\Attributes\RunClassInSeparateProcess;
 
-/*
-    Mockery with Alias
-
-    To avoid errors, we will need to run in a separate process.
+/**
+ * Mockery with Alias
+ *
+ * To avoid errors, we will need to run in a separate process.
+ *
+ * @return void
 */
 
 #[RunClassInSeparateProcess]

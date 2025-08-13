@@ -6,6 +6,8 @@
 
 - For TDD: Tests should confirm the behaviour of code, not how it's implemented. Tests should affirm the outcome of using a class and its methods.
 
+- To use PHPUnit Mockery.
+
 &nbsp;
 
 ## Install Manually

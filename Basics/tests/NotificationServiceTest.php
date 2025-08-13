@@ -72,8 +72,10 @@ final class NotificationServiceTest extends MockeryTestCase
         $this->assertTrue($service->sendNotification('dave@example.com', 'Hi'));
     }
 
-    /*
-       Mockery test for the test above
+    /**
+    * Mockery test for the test above
+    *
+    * @return void
     */
     public function testMailerIsCalledCorrectlyOnceWithMockery(): void
     {
@@ -87,5 +89,26 @@ final class NotificationServiceTest extends MockeryTestCase
         $service = new NotificationService($mailer);
 
         $this->assertTrue($service->sendNotification('dave@example.com', 'Hi'));
+    }
+
+    /**
+    * Mockery spy
+    *
+    * We are using spies to very test double method calls after they happen.
+    * All method calls on spy objects return null. A quicker way to test than creating mocks.
+    *
+    * @return void
+    */
+    public function testMailerIsCalledCorrectlyOnceWithMockerySpy(): void
+    {
+        $mailer = Mockery::spy(Mailer::class);
+
+        $service = new NotificationService($mailer);
+
+        $service->sendNotification('dave@example.com', 'Hello');
+
+        $mailer->shouldHaveReceived('sendEmail')
+               ->once()
+               ->with('dave@example.com', 'New Notification', 'Hello');
     }
 }
