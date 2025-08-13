@@ -20,4 +20,40 @@ final class WeatherServiceTest extends MockeryTestCase
 
         $this->assertSame('18°C', $service->getTemperatureForCity('Berlin'));
     }
+
+    public function testSubsequentMethodCalls(): void
+    {
+        $mock = $this->createMock(WeatherService::class);
+
+        $map = [
+            ['Madrid', '26°C'],
+            ['Paris', '21°C'],
+            ['London', '17°C']
+        ];
+
+        $mock->method('getTemperatureForCity')->willReturnMap($map);
+
+        // you can't write subsequent Mock expectations like this in phpunit
+
+        // $mock->method('getTemperatureForCity')->with('Madrid')->willReturn('26°C');
+        // $mock->method('getTemperatureForCity')->with('Paris')->willReturn('21°C');
+        // $mock->method('getTemperatureForCity')->with('London')->willReturn('17°C');
+
+        $this->assertSame('26°C', $mock->getTemperatureForCity('Madrid'));
+        $this->assertSame('21°C', $mock->getTemperatureForCity('Paris'));
+        $this->assertSame('17°C', $mock->getTemperatureForCity('London'));
+    }
+
+    public function testSubsequentMethodCallsWithMockery(): void
+    {
+        $mock = Mockery::mock(WeatherService::class);
+
+        $mock->shouldReceive('getTemperatureForCity')->with('Madrid')->andReturn('26°C');
+        $mock->shouldReceive('getTemperatureForCity')->with('Paris')->andReturn('21°C');
+        $mock->shouldReceive('getTemperatureForCity')->with('London')->andReturn('17°C');
+
+        $this->assertSame('26°C', $mock->getTemperatureForCity('Madrid'));
+        $this->assertSame('21°C', $mock->getTemperatureForCity('Paris'));
+        $this->assertSame('17°C', $mock->getTemperatureForCity('London'));
+    }
 }
